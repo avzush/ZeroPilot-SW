@@ -62,8 +62,7 @@ int main() {
 		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_11);
 		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_12);
 		//HAL_Delay(50);
-		//uint8_t Test[] = "Hello World !!!\r\n"; //Data to send
-	  	//HAL_UART_Transmit(&huart1,Test,sizeof(Test),10);
+		
 		/*
 		led1.set_state(GPIO_STATE_HIGH);
 		led2.set_state(GPIO_STATE_HIGH);
@@ -73,6 +72,8 @@ int main() {
 		{
 			int ppmCh3 = ppm.get(3);
 			manager.channel(5).set(ppmCh3);
+			uint8_t Test[] = "Hello World !!!\r\n"; //Data to send
+	  		HAL_UART_Transmit(&huart1,Test,sizeof(Test),10);
 			manager.channel(6).set(i);
 			HAL_Delay(100);
 		}
@@ -130,7 +131,7 @@ StatusCode setupPPM(PPMChannel &ppm)
 void callMXfunctions()
 {
 	MX_GPIO_Init();
-	MX_USART2_UART_Init();
+	//MX_USART2_UART_Init();
 	MX_USART1_UART_Init();
 	/*
   	MX_I2C1_Init();
