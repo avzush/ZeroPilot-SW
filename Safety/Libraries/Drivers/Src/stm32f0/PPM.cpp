@@ -3,6 +3,7 @@
 #include "Clock.hpp"
 #include <stdint.h>
 #include "stm32f0xx_hal.h"
+#include "system_config.hpp"
 
 TIM_HandleTypeDef htim14;
 
@@ -115,13 +116,16 @@ uint32_t PPMChannel::get_us(PWMChannelNum num) {
 	return convert_ticks_to_us(capture);
 }
 
+
 StatusCode PPMChannel::setup() {
 	if (is_setup) {
 		return STATUS_CODE_INVALID_ARGS;
 	}
 
 	__HAL_RCC_TIM14_CLK_ENABLE();
+	MX_TIM14_Init();
 
+	/*
 	StatusCode status = ppm_pin.setup();
 	if (status != STATUS_CODE_OK) return status;
 
@@ -157,6 +161,7 @@ StatusCode PPMChannel::setup() {
 
 	status = get_status_code(HAL_TIM_IC_Start_IT(&htim14, TIM_CHANNEL_1));
 	if (status != STATUS_CODE_OK) return status;
+	*/
 
 	is_setup = true;
 

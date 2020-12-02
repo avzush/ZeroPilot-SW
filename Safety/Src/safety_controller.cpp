@@ -20,9 +20,8 @@ void safety_controller_init()
     //Interchip_Init(dataTX, dataRX);
 }
 
-void safety_run(IWDG_HandleTypeDef &hiwdg, PPMChannel &ppm)
+void safety_run(PPMChannel &ppm)
 {
-    HAL_IWDG_Refresh(&hiwdg);
     if(isSafetyManual())
     {
         for(int channel = 0; channel < 12; channel++)
@@ -58,7 +57,7 @@ bool isSafetyManual()
     *   TODO: ADD SYSTEM TO MAKE SAFETY MANUAL!
     */
     //Not sure what the implementation is for now...?
-    return false;
+    return true;
 }
 
 int getPPM(PPMChannel &ppm, int channel)
